@@ -13,7 +13,7 @@ const routes: Routes = [{
   path: 'crono', component: CronoComponent
 },
 {
-  path: 'lougout', component: LogoutComponentComponent
+  path: 'logout', component: LogoutComponentComponent
 },
 {
   path: '**', redirectTo: 'login' 

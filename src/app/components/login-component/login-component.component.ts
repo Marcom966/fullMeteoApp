@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
   selector: '[app-login-component]',
@@ -20,7 +21,7 @@ export class LoginComponentComponent implements OnInit {
   error!: boolean;
   jsonUrl = 'assets/users.json';
   
-  constructor(private router: Router, private _http: HttpClient) { }
+  constructor(private router: Router, private _http: HttpClient, private action: UserLogServiceService) { }
 
   public onSubmit(form: NgForm){
     this.usernameTocatch = form.value.Nickname;

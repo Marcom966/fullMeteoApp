@@ -5,6 +5,7 @@ import { DataInterface } from 'src/app/interfaces/data-interface';
 import { MapServiceService } from 'src/app/services/map-service.service';
 import { Subscription } from 'rxjs';
 import { WeatherInterface } from 'src/app/interfaces/weather-interface';
+import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
   selector: '[app-map]',
@@ -186,8 +187,6 @@ export class MapComponent implements OnInit {
   }
 
 
-
-
   public openMapNew(): void {
     this.map = L.map('map', {
       center:[41.902320136026475, 12.498225402554683],
@@ -215,7 +214,7 @@ export class MapComponent implements OnInit {
     tiles.addTo(this.map);
   }
   
-  constructor( private route: Router, public getData: MapServiceService) { }
+  constructor( private route: Router, public getData: MapServiceService, private action: UserLogServiceService) { }
   public naviga(destinatione: string){
     this.route.navigate([destinatione]);
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
   selector: '[app-crono]',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crono.component.css']
 })
 export class CronoComponent implements OnInit {
+  username!: any;
+  actions!: any[];
+  date: Date = new Date();
 
-  constructor() { }
+  constructor(private action: UserLogServiceService) { }
+
+  public getActions(){
+    this.action.getActions();
+  }
 
   ngOnInit(): void {
+    this.getActions();
   }
 
 }

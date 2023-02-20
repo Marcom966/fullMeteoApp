@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CityInterface } from 'src/app/interfaces/city-interface';
 import { DataInterface } from 'src/app/interfaces/data-interface';
+import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
   selector: 'app-header',
@@ -26,7 +27,7 @@ export class HeaderComponent implements OnInit {
   weatherCode!: boolean;
   data!: DataInterface; 
 
-    constructor() { }
+    constructor(private action: UserLogServiceService) { }
   public cityArray: CityInterface[] = [
     new CityInterface('Stoccolma', 59.319334136785365, 18.056126191896496),
     new CityInterface('Berlino', 52.53226122863974, 13.40814694211475),
@@ -71,6 +72,8 @@ export class HeaderComponent implements OnInit {
     this.temperaturaAlsuolo = form.value.soil_temperature;
     this.weatherCode = form.value.weathercode;
     this.data = new DataInterface(this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode);
+    let invia = "bottone invia";
+    this.action.logService(invia);
 
   }
   ngOnInit(): void {
