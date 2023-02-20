@@ -1,0 +1,9 @@
+<div class="container" id="container">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login">
+        <p>Inserisci Nickname:</p>
+        <input type="text" ngModel class="input" name="Nickname" placeholder="Nickname">
+        <p>Inserisci Password:</p>
+        <input type="text" ngModel class="input" name="Password" placeholder="Password">
+        <button type="submit" id="onSubmit" [ngClass]="error?'errorClass':'button'">{{error?"correggi username e password, poi clicca di nuovo qui":"INVIA"}}</button>
+    </form>
+</div>

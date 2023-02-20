@@ -1,0 +1,30 @@
+<div class="containerAlten" id="top-page">
+    <div class="image-container" id="image-container">
+        <img class="altenImg" src="assets/ALTEN.jpg">
+    </div>
+    <div class="navbar" id="navbar">
+        <div class="row" id="row">
+            <form #cityForm="ngForm" (ngSubmit)="getCity(cityForm)" class="City" id="form">
+                <div class="row" id="rowForm">
+                    <h1 class="h1Form">Inserisci una città</h1>
+                    <input type="checkbox" ngModel name="cityCheck" id="cityCheck">
+                    <input type="text" ngModel name="nomeCittà" placeholder="scrivi nome città" id="collapseInput">
+                    <input type="text" ngModel name="latitude" placeholder="aggiungi latitudine" id="collapseInput">
+                    <input type="text" ngModel name="longitude" placeholder="aggiungi longitudine" id="collapseInput">
+                </div>
+                <h1 class="h1Form2">Oppure</h1>
+                <h1 class="h1Form3">Scegli una città dalla lista</h1>
+                <input type="checkbox" ngModel name="checkboxCity" id="checkboxCity">
+                <select name="cities" class="selectCity" id="citiesSeach" ngModel name="cityToChoose">
+                    <option value="" class="cityOption" *ngFor="let City of cityArray" [ngValue]="City">{{City.cityName}}</option>
+                </select>
+                <input type="checkbox" class="input" ngModel  name="temperatura"/>Temperatura
+                <input type="checkbox" class="input" ngModel  name="wind"/>Vento 
+                <input type="checkbox" class="input" ngModel  name="soil_temperature"/>Temperatura al suolo
+                <input type="checkbox" class="input" ngModel  name="weathercode"/>Tempo
+                    <button type="submit" id="onSubmit" class="button">Invia</button>
+            </form>
+        </div>
+    </div>
+    <div class="CityMap" app-map [data]="data"></div>
+</div>
