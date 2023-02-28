@@ -6,6 +6,8 @@ import { MapServiceService } from 'src/app/services/map-service.service';
 import { Subscription } from 'rxjs';
 import { WeatherInterface } from 'src/app/interfaces/weather-interface';
 import { UserLogServiceService } from 'src/app/services/user-log-service.service';
+import { UserLog } from 'src/app/interfaces/user-log';
+import { UserData } from 'src/app/interfaces/user-data';
 
 @Component({
   selector: '[app-map]',
@@ -15,6 +17,8 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 export class MapComponent implements OnInit {
   @Input() data!: DataInterface
   map!: any;
+  dataNew!: DataInterface;
+  userNew!: UserData;
   firstCityCheck: boolean = false;
   nomeCittà!: string;
   latitude!: number;
@@ -205,6 +209,9 @@ export class MapComponent implements OnInit {
       window.alert('free marker mode attivato')
       this.markerExists = true;
       this.Decide();
+      this.userNew = new UserData('undefined','undefined', 'undefined', 'undefined');
+      this.dataNew = new DataInterface('map-freeMarker-component', this.date.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, 'map-component');
+      this.action.sendData(this.dataNew, this.userNew);
     }))
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,

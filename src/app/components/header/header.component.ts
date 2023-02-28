@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Router } from '@angular/router';
 import { CityInterface } from 'src/app/interfaces/city-interface';
 import { DataInterface } from 'src/app/interfaces/data-interface';
+import { UserData } from 'src/app/interfaces/user-data';
 import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
@@ -25,9 +27,16 @@ export class HeaderComponent implements OnInit {
   vento!: boolean;
   temperaturaAlsuolo!: boolean;
   weatherCode!: boolean;
-  data!: DataInterface; 
+  data!: DataInterface;
+  userData!: UserData;
+  date: Date = new Date() ;
+  lastIn: any= '';
+  currentPage = '';
+  timeSpentOnPages = [];
+  componentName!: string;
+  
 
-    constructor(private action: UserLogServiceService) { }
+    constructor(private router: Router, private user: UserLogServiceService) { }
   public cityArray: CityInterface[] = [
     new CityInterface('Stoccolma', 59.319334136785365, 18.056126191896496),
     new CityInterface('Berlino', 52.53226122863974, 13.40814694211475),
@@ -71,10 +80,13 @@ export class HeaderComponent implements OnInit {
     this.vento = form.value.wind;
     this.temperaturaAlsuolo = form.value.soil_temperature;
     this.weatherCode = form.value.weathercode;
-    this.data = new DataInterface(this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode);
-    let invia = "bottone invia";
-    this.action.logService(invia);
-
+    this.componentName = 'header-component';
+    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, this.componentName);
+    this.userData = new UserData('UserData', this.date.toLocaleTimeString(), this.componentName, localStorage.getItem('username')?.toString());
+    this.user.sendData(this.data, this.userData);
+  }
+  public goToChrono(){
+    this.router.navigate(['crono']);
   }
   ngOnInit(): void {
     this.cityArray.forEach(city=>{

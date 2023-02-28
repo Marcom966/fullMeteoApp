@@ -1,1 +1,14 @@
-<p>crono works!</p>
+<div id="contsiner" class="container">
+    <h1 class="userLog"> Cronologia {{username}}</h1>
+    <h1 class="userLog"> Orario Login: {{loginDate}}</h1>
+    <div class="ngFor" ></div>
+        <tr class="cronologiaUser" *ngFor="let action of actions">
+            <th class="titoloTabella">Orario:</th>
+            <th class="titoloTabella">Azione:<th>
+            <th class="titoloTabella">Città cercata:<th>
+            <th class="titoloTabella">Parametri Cercanti:</th>
+            <tbody class="results">{{orario}}</tbody>
+            <tbody class="results">{{azione}}</tbody>
+            <tbody class="results">{{nomeCitta}}</tbody>           
+        </tr>
+</div>

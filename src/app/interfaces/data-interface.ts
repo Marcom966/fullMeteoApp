@@ -1,5 +1,7 @@
 export class DataInterface {
     constructor(
+        public id: string,
+        public date: string,
         public cityCheck1: boolean,
         public nomeCittà: string,
         public latitudine: number,
@@ -11,6 +13,7 @@ export class DataInterface {
         public temperatura: boolean,
         public vento: boolean,
         public soil_temperature: boolean,
-        public weatherCode: boolean
+        public weatherCode: boolean,
+        public currentPageData: string,
     ){}
 }
