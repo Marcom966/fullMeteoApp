@@ -209,9 +209,8 @@ export class MapComponent implements OnInit {
       window.alert('free marker mode attivato')
       this.markerExists = true;
       this.Decide();
-      this.userNew = new UserData('undefined','undefined', 'undefined', 'undefined');
       this.dataNew = new DataInterface('map-freeMarker-component', this.date.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, 'map-component');
-      this.action.sendData(this.dataNew, this.userNew);
+      this.action.sendDataActions(this.dataNew);
     }))
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,

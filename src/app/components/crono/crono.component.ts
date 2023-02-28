@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Action } from 'rxjs/internal/scheduler/Action';
 import { DataInterface } from 'src/app/interfaces/data-interface';
 import { UserData } from 'src/app/interfaces/user-data';
 import { UserLog } from 'src/app/interfaces/user-log';
@@ -18,39 +19,28 @@ export class CronoComponent implements OnInit {
   nomeCitta!: string;
   orario!: string;
   azione!: string;
-  actions: (DataInterface|UserData)[] = [];
+  userNameActions: UserData[] = [];
+  pageActions: DataInterface[] = [];
 
   constructor(private action: UserLogServiceService) { }
   public getData(){
-    console.log(this.actions);
-    
-    this.user.forEach(utente=>{
-      if(utente['currentPage']==='login-component'){
-        this.loginDate = utente['date'];
-      }if(utente['currentPage']==='header-component'){
-        this.username = utente['userName'];
-      }
+    console.log(this.userNameActions);
+    console.log(this.pageActions);
+    this.userNameActions.forEach(user=>{
+      this.username = user.userName;
+      this.loginDate = user.date;
     })
-    this.log.forEach(loggin=>{
-      console.log(loggin);
-      if(loggin['currentPageData']==='header-component'){
-        this.orario = loggin['date'];
-        this.nomeCitta = loggin['nomeCittàArray'];
-        this.azione = 'clicked on'+loggin['currentPageData'];
-      }
-    })
+   this.pageActions.forEach(action=>{
+    console.log(action);
+    this.orario = action.date;
+    this.azione = action.currentPageData;
+    this.nomeCitta = action.nomeCittàArray;
+   })
   }
 
   ngOnInit(): void {
-    this.actions = this.action.getData();
-    this.actions.forEach(action=>{
-      if(action.id==='DataInterface'){
-        this.log.push(action);
-      }
-      if(action.id==='UserData'){
-        this.user.push(action);
-      }  
-    })
+    this.userNameActions = this.action.getDataUser();
+    this.pageActions = this.action.getDataActions();
     this.getData();
   }
 }

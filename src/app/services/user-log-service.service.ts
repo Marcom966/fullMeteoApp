@@ -6,15 +6,23 @@ import { UserData } from '../interfaces/user-data';
   providedIn: 'root'
 })
 export class UserLogServiceService {
-  dataArr: (DataInterface|UserData)[] = [];
-  constructor()  { }
+  userArr: UserData[] = [];
+  actionsArr: DataInterface[] = [];
+    constructor()  { }
 
-  public sendData(data: DataInterface, user: UserData){
-   this.dataArr.push(data);
-   this.dataArr.push(user);
+  public sendDataUser(user: UserData){
+   this.userArr.push(user);
   }
 
-  public getData(){
-    return this.dataArr;
+  public sendDataActions(data: DataInterface){
+    this.actionsArr.push(data);
+  }
+
+  public getDataUser(){
+    return this.userArr;
+  }
+
+  public getDataActions(){
+    return this.actionsArr;
   }
 }

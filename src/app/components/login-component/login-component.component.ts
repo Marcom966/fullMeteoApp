@@ -44,9 +44,8 @@ export class LoginComponentComponent implements OnInit {
           localStorage.setItem('password', this.passWord2);
           localStorage.setItem('date', this.date2);
           this.componentName = 'login-component';
-          this.emptyData = new DataInterface('DataInterface','undefined', false, 'undefined', 0, 0, false, 'undefined', 0, 0, false, false, false, false, this.componentName)
           this.userLog = new UserData('UserData', this.date.toLocaleTimeString(), 'login-component', this.username2);
-          this.userLogger.sendData(this.emptyData, this.userLog);
+          this.userLogger.sendDataUser(this.userLog);
         }else{
           this.formError();
         }

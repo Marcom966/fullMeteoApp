@@ -82,8 +82,7 @@ export class HeaderComponent implements OnInit {
     this.weatherCode = form.value.weathercode;
     this.componentName = 'header-component';
     this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, this.componentName);
-    this.userData = new UserData('UserData', this.date.toLocaleTimeString(), this.componentName, localStorage.getItem('username')?.toString());
-    this.user.sendData(this.data, this.userData);
+    this.user.sendDataActions(this.data);
   }
   public goToChrono(){
     this.router.navigate(['crono']);
