@@ -25,7 +25,7 @@
                     <button type="submit" id="onSubmit" class="button">Invia</button>
             </form>
         </div>
-        <button id="loggati" class="logButton" (click)="logIn()">Accedi</button>
+        <button id="loggati" class="logButton" (click)="logged ? exit() : logIn()">{{logged ? "Esci" : "Accedi"}}</button>
     </div>
     <div class="CityMap" app-map [data]="data"></div>
     <div class="footer" app-footer></div>

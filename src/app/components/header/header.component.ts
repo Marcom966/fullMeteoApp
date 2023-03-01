@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   logged: boolean = false;
   
 
-    constructor(private router: Router, private user: UserLogServiceService) { }
+  constructor(private router: Router, private user: UserLogServiceService) { }
   public cityArray: CityInterface[] = [
     new CityInterface('Stoccolma', 59.319334136785365, 18.056126191896496),
     new CityInterface('Berlino', 52.53226122863974, 13.40814694211475),
@@ -118,16 +118,26 @@ export class HeaderComponent implements OnInit {
   public logIn(){
     this.router.navigate(['login']);
   }
+
+  public exit(){
+    localStorage.setItem('username', this.realUser);
+    localStorage.setItem('password', this.realPassword);
+    localStorage.setItem('date', this.realDate);
+    this.router.navigate(['home']);
+  }
   ngOnChanges():void{
     if(this.firstCityCheck){
       this.cityFirstChecked = true;
     }
+    this.logged = false;
+
   }
   ngOnInit(): void {
-    console.log(this.getUser, this.getPassword);
     this.getUser = localStorage.getItem('username');
     this.getPassword = localStorage.getItem('password');
     if(this.getUser!=='undefined'&&this.getPassword!=='undefined'){
+      console.log(this.getUser);
+      
       this.logged = true;
     }
     if(this.firstCityCheck){

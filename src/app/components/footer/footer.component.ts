@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   isauth: boolean = false;
   isAuth: boolean = false;
   storageUser!: string|null;
-  passwordUser!: string|null;
+  passwordUser!: string|null
   user!: any;
   accesso!: any;
   ultimoAccesso!: any;
@@ -46,19 +46,26 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['crono']);
   }
 
+  public logIn(){
+    this.router.navigate(['login']);
+  }
   
   public exit(){
     localStorage.setItem('username', this.realUser);
     localStorage.setItem('password', this.realPassword);
     localStorage.setItem('date', this.realDate);
-    this.router.navigate(['login']);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['home']);
   }
-
+  ngOnChanges(): void{
+    this.footer();
+  }
   ngOnInit(): void {
     this.storageUser = localStorage.getItem('username');
     this.passwordUser = localStorage.getItem('passord');
     if(this.storageUser!=='undefined'&&this.passwordUser!=='undefined'){
-      this.isAuth = false;
+      this.isAuth = true;
     }
     this.footer()
   }
