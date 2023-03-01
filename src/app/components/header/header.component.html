@@ -9,7 +9,7 @@
                     <h1 class="h1Form">Inserisci una città</h1>
                     <input type="checkbox" ngModel name="cityCheck" id="cityCheck">
                     <input type="text" ngModel name="nomeCittà" placeholder="scrivi nome città" id="collapseInput">
-                    <input type="text" ngModel name="latitude" placeholder="aggiungi latitudine" id="collapseInput">
+                    <input type="text" ngModel name="latitude"  placeholder="aggiungi latitudine" id="collapseInput">
                     <input type="text" ngModel name="longitude" placeholder="aggiungi longitudine" id="collapseInput">
                 </div>
                 <h1 class="h1Form2">Oppure</h1>
@@ -19,8 +19,8 @@
                     <option value="" class="cityOption" *ngFor="let City of cityArray" [ngValue]="City">{{City.cityName}}</option>
                 </select>
                 <input type="checkbox" class="input" ngModel name="temperatura"/>Temperatura
-                <input type="checkbox" class="input" ngModel *ngIf="getUser!==undefined&&getPassword!==undefined" name="wind">{{logged ? "Vento" : ""}} 
-                <input type="checkbox" class="input" ngModel *ngIf="getUser!==undefined&&getPassword!==undefined" name="soil_temperature">{{logged ? "Temperatura al suolo" : ""}}
+                <input type="checkbox" class="input" ngModel *ngIf="getUser!=='undefined'&&getPassword!=='undefined'" name="wind">{{logged ? "Vento" : ""}} 
+                <input type="checkbox" class="input" ngModel *ngIf="getUser!=='undefined'&&getPassword!=='undefined'" name="soil_temperature">{{logged ? "Temperatura al suolo" : ""}}
                 <input type="checkbox" class="input" ngModel  name="weathercode"/>Tempo
                     <button type="submit" id="onSubmit" class="button">Invia</button>
             </form>

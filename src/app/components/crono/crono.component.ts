@@ -13,6 +13,8 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 export class CronoComponent implements OnInit {
   @Input() data!: UserLog;
   username!: any;
+  storageUser!: string|null;
+  passwordUser!: string|null;
   user: any[] = [];
   log: any[] = [];
   loginDate!: string;
@@ -23,6 +25,7 @@ export class CronoComponent implements OnInit {
   pageActions: DataInterface[] = [];
   params: any[] = [];
   paramsName!: string;
+  isAuth: boolean = false;
 
   constructor(private action: UserLogServiceService, private route: Router) { }
   public getData(){

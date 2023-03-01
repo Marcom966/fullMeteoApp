@@ -14,6 +14,7 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 export class HeaderComponent implements OnInit {
   cityToIterate:  string[] = [];
   firstCityCheck!: boolean;
+  cityFirstChecked: boolean = false;
   nomeCitta!: string;
   latitudine!: number;
   longitudine!: number;
@@ -28,7 +29,6 @@ export class HeaderComponent implements OnInit {
   temperaturaAlsuolo!: boolean;
   weatherCode!: boolean;
   data!: DataInterface;
-  //dataFooter!: UserData;
   userData!: UserData;
   date: Date = new Date() ;
   lastIn: any= '';
@@ -70,12 +70,10 @@ export class HeaderComponent implements OnInit {
   ]
 
   public getCity(form: NgForm){
-    this.getUser = localStorage.getItem('username');
-    this.getPassword = localStorage.getItem('password');
-    if(this.getUser!== undefined&&this.getPassword!==undefined){
-      this.logged = true;
-    }
     this.firstCityCheck = form.value.cityCheck;
+    if(this.firstCityCheck){
+      this.cityFirstChecked = true;
+    }
     this.nomeCitta = form.value.nomeCittà;
     this.latitudine = form.value.latitude;
     this.longitudine = form.value.longitude;
@@ -92,8 +90,6 @@ export class HeaderComponent implements OnInit {
     this.temperatura = form.value.temperatura;
     this.vento = form.value.wind;
     this.temperaturaAlsuolo = form.value.soil_temperature;
-    console.log(this.getUser);
-    console.log(this.getPassword);
     this.weatherCode = form.value.weathercode;
     this.componentName = 'header-component';
     if(this.params.length>0){
@@ -122,7 +118,21 @@ export class HeaderComponent implements OnInit {
   public logIn(){
     this.router.navigate(['login']);
   }
+  ngOnChanges():void{
+    if(this.firstCityCheck){
+      this.cityFirstChecked = true;
+    }
+  }
   ngOnInit(): void {
+    console.log(this.getUser, this.getPassword);
+    this.getUser = localStorage.getItem('username');
+    this.getPassword = localStorage.getItem('password');
+    if(this.getUser!=='undefined'&&this.getPassword!=='undefined'){
+      this.logged = true;
+    }
+    if(this.firstCityCheck){
+      this.cityFirstChecked = true;
+    }
     this.cityArray.forEach(city=>{
       let string = city.cityName;
       this.cityToIterate.push(string);
