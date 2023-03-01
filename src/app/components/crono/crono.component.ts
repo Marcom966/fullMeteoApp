@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { Router } from '@angular/router';
 import { DataInterface } from 'src/app/interfaces/data-interface';
 import { UserData } from 'src/app/interfaces/user-data';
 import { UserLog } from 'src/app/interfaces/user-log';
@@ -21,21 +21,19 @@ export class CronoComponent implements OnInit {
   azione!: string;
   userNameActions: UserData[] = [];
   pageActions: DataInterface[] = [];
+  params: any[] = [];
+  paramsName!: string;
 
-  constructor(private action: UserLogServiceService) { }
+  constructor(private action: UserLogServiceService, private route: Router) { }
   public getData(){
-    console.log(this.userNameActions);
-    console.log(this.pageActions);
     this.userNameActions.forEach(user=>{
       this.username = user.userName;
-      this.loginDate = user.date;
+      this.loginDate = user.date;      
     })
-   this.pageActions.forEach(action=>{
-    console.log(action);
-    this.orario = action.date;
-    this.azione = action.currentPageData;
-    this.nomeCitta = action.nomeCittàArray;
-   })
+  }
+
+  public getBack(){
+    this.route.navigate(['home'])
   }
 
   ngOnInit(): void {

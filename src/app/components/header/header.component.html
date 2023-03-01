@@ -18,16 +18,15 @@
                 <select name="cities" class="selectCity" id="citiesSeach" ngModel name="cityToChoose">
                     <option value="" class="cityOption" *ngFor="let City of cityArray" [ngValue]="City">{{City.cityName}}</option>
                 </select>
-                <input type="checkbox" class="input" ngModel  name="temperatura"/>Temperatura
-                <input type="checkbox" class="input" ngModel  name="wind"/>Vento 
-                <input type="checkbox" class="input" ngModel  name="soil_temperature"/>Temperatura al suolo
+                <input type="checkbox" class="input" ngModel name="temperatura"/>Temperatura
+                <input type="checkbox" class="input" ngModel *ngIf="getUser!==undefined&&getPassword!==undefined" name="wind">{{logged ? "Vento" : ""}} 
+                <input type="checkbox" class="input" ngModel *ngIf="getUser!==undefined&&getPassword!==undefined" name="soil_temperature">{{logged ? "Temperatura al suolo" : ""}}
                 <input type="checkbox" class="input" ngModel  name="weathercode"/>Tempo
                     <button type="submit" id="onSubmit" class="button">Invia</button>
             </form>
         </div>
-    <div id="bottoneSchiantato" class="bottoneschiantato">
-        <button id="cronoButton" class="cronoButton" (click)="goToChrono()">Cronologia</button>
-    </div>
+        <button id="loggati" class="logButton" (click)="logIn()">Accedi</button>
     </div>
     <div class="CityMap" app-map [data]="data"></div>
+    <div class="footer" app-footer></div>
 </div>

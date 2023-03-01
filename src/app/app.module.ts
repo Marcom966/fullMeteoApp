@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponentComponent } from './components/login-component/login-component.component';
@@ -11,7 +10,6 @@ import { CronoComponent } from './components/crono/crono.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
@@ -22,7 +20,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     MapComponent,
     CronoComponent,
-    LogoutComponentComponent,
     NavbarComponent,
   ],
   imports: [

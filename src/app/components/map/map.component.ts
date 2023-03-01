@@ -6,7 +6,6 @@ import { MapServiceService } from 'src/app/services/map-service.service';
 import { Subscription } from 'rxjs';
 import { WeatherInterface } from 'src/app/interfaces/weather-interface';
 import { UserLogServiceService } from 'src/app/services/user-log-service.service';
-import { UserLog } from 'src/app/interfaces/user-log';
 import { UserData } from 'src/app/interfaces/user-data';
 
 @Component({
@@ -17,6 +16,7 @@ import { UserData } from 'src/app/interfaces/user-data';
 export class MapComponent implements OnInit {
   @Input() data!: DataInterface
   map!: any;
+  params!: string[];
   dataNew!: DataInterface;
   userNew!: UserData;
   firstCityCheck: boolean = false;
@@ -79,7 +79,7 @@ export class MapComponent implements OnInit {
       this.latitude = this.data.latitudine;
       this.longitude = this.data.longitudine;
     }else if(this.cityCheck){
-      this.nomeCittà = this.data.nomeCittàArray;
+      this.nomeCittà = this.data.nomeCittaArray;
       this.latitude = this.data.latitudeArray;
       this.longitude = this.data.longitudeArray;
     }else if (this.freemarker&&!this.firstCityCheck&&!this.cityCheck){
@@ -209,7 +209,26 @@ export class MapComponent implements OnInit {
       window.alert('free marker mode attivato')
       this.markerExists = true;
       this.Decide();
-      this.dataNew = new DataInterface('map-freeMarker-component', this.date.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, 'map-component');
+      if(this.params.length>0){
+        this.params.splice(0, this.params.length);
+      }
+      if(this.temperaturaAlsuolo){
+        let nameParameter = 'soil_temperature'
+        this.params.push(nameParameter)
+      }
+      if(this.temperatura){
+        let nameParameter = 'temperatura';
+        this.params.push(nameParameter);
+      }
+      if(this.vento){
+        let nameParameter = 'wind'
+        this.params.push(nameParameter);
+      }
+      if(this.weathercode){
+        let nameParameter = 'weatherCode';
+        this.params.push(nameParameter);
+      }
+      this.dataNew = new DataInterface('map-freeMarker-component', this.date.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, this.params, 'map-component');
       this.action.sendDataActions(this.dataNew);
     }))
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -28,12 +28,20 @@ export class HeaderComponent implements OnInit {
   temperaturaAlsuolo!: boolean;
   weatherCode!: boolean;
   data!: DataInterface;
+  //dataFooter!: UserData;
   userData!: UserData;
   date: Date = new Date() ;
   lastIn: any= '';
   currentPage = '';
   timeSpentOnPages = [];
   componentName!: string;
+  realUser!: string;
+  realPassword!: string;
+  realDate!: string;
+  params: string[] = [];
+  getUser!: string|null;
+  getPassword!: string|null;
+  logged: boolean = false;
   
 
     constructor(private router: Router, private user: UserLogServiceService) { }
@@ -62,6 +70,11 @@ export class HeaderComponent implements OnInit {
   ]
 
   public getCity(form: NgForm){
+    this.getUser = localStorage.getItem('username');
+    this.getPassword = localStorage.getItem('password');
+    if(this.getUser!== undefined&&this.getPassword!==undefined){
+      this.logged = true;
+    }
     this.firstCityCheck = form.value.cityCheck;
     this.nomeCitta = form.value.nomeCittà;
     this.latitudine = form.value.latitude;
@@ -79,13 +92,35 @@ export class HeaderComponent implements OnInit {
     this.temperatura = form.value.temperatura;
     this.vento = form.value.wind;
     this.temperaturaAlsuolo = form.value.soil_temperature;
+    console.log(this.getUser);
+    console.log(this.getPassword);
     this.weatherCode = form.value.weathercode;
     this.componentName = 'header-component';
-    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, this.componentName);
+    if(this.params.length>0){
+      this.params.splice(0, this.params.length);
+    }
+    if(this.temperaturaAlsuolo){
+      let nameParameter = 'soil_temperature'
+      this.params.push(nameParameter)
+    }
+    if(this.temperatura){
+      let nameParameter = 'temperatura';
+      this.params.push(nameParameter);
+    }
+    if(this.vento){
+      let nameParameter = 'wind'
+      this.params.push(nameParameter);
+    }
+    if(this.weatherCode){
+      let nameParameter = 'weatherCode';
+      this.params.push(nameParameter);
+    }
+    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, this.params, this.componentName);
     this.user.sendDataActions(this.data);
   }
-  public goToChrono(){
-    this.router.navigate(['crono']);
+
+  public logIn(){
+    this.router.navigate(['login']);
   }
   ngOnInit(): void {
     this.cityArray.forEach(city=>{
