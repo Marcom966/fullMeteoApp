@@ -16,6 +16,7 @@ export class LoginComponentComponent implements OnInit {
   usernameTocatch!: string;
   passwordToCatch!: string;
   date: Date = new Date();
+  day!: string;
   userLog!: UserData;
   requestSub = new Subscription();
   emptyData!: DataInterface;
@@ -33,6 +34,7 @@ export class LoginComponentComponent implements OnInit {
     this.usernameTocatch = form.value.Nickname;
     this.passwordToCatch = form.value.Password;
     this.date2 = this.date.toLocaleTimeString();
+    this.day = this.date.getDay().toString()
     this.requestSub = this.getData().subscribe((resp)=>{
       let users = resp['users'];
       users.forEach((user: any)=>{
@@ -43,6 +45,7 @@ export class LoginComponentComponent implements OnInit {
           localStorage.setItem('username', this.username2);
           localStorage.setItem('password', this.passWord2);
           localStorage.setItem('date', this.date2);
+          localStorage.setItem('day', this.day);
           this.componentName = 'login-component';
           this.userLog = new UserData('UserData', this.date.toLocaleTimeString(), 'login-component', this.username2);
           this.userLogger.sendDataUser(this.userLog);

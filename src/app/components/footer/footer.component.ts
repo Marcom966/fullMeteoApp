@@ -64,7 +64,7 @@ export class FooterComponent implements OnInit {
   }
   ngOnInit(): void {
     this.storageUser = localStorage.getItem('username');
-    this.passwordUser = localStorage.getItem('passord');
+    this.passwordUser = localStorage.getItem('password');
     if(this.storageUser!=='undefined'&&this.passwordUser!=='undefined'){
       this.isauth = true;
     }

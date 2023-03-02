@@ -1,6 +1,6 @@
 <div id="bottoneSchiantato" class="bottoneschiantato">
-    <h1 class="username">{{"user name: "+(isauth ? user : "Non hai eseguito l'accesso")}}</h1>
-    <p class="ultimo accesso">{{"Ultimo accesso: "+(isauth ? accesso : "Non hai eseguito l'accesso")}}</p>
-    <button id="cronoButton" class="cronoButton"  (click)="goToChrono()" *ngIf="storageUser!=='undefined'&&passwordUser!=='undefined'">{{isauth ? "Cronologia" : ""}}</button>
-    <button id="esci" class="exitButton" (click)="isauth ? exit() : logIn()">{{isauth ? "Esci" : "Accedi"}}</button>
+    <h1 class="username" *ngIf="storageUser!=='undefined'&&passwordUser!=='undefined'">{{(isauth ? "user name: " : "")+(isauth ? user : "Non hai eseguito l'accesso")}}</h1>
+    <p class="ultimoAccesso">{{(isauth ? "Ultimo accesso: " : "")+(isauth ? accesso : "Non hai eseguito l'accesso")}}</p>
+    <button id="cronoButton" class="cronoButton"  (click)="goToChrono()" *ngIf="storageUser!=='undefined'&&passwordUser!=='undefined'">{{isauth ? "Cronologia" : ""|uppercase}}</button>
+    <button id="esci" class="exitButton" (click)="isauth ? exit() : logIn()">{{isauth ? "Esci" : "Accedi"|uppercase}}</button>
 </div>

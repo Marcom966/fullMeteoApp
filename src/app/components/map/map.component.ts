@@ -19,6 +19,15 @@ export class MapComponent implements OnInit {
   params: string[] = [];
   dataNew!: DataInterface;
   userNew!: UserData;
+  localDate!: any;
+  loginDate!: any;
+  loginToNumberDate!:any;
+  loginToNumberDateToString: string = "";
+  loginDay!: any;
+  localHour!: string;
+  realUser: string = 'undefined';
+  realPassword: string = 'undefined';
+  realDate: string = 'undefined';
   firstCityCheck: boolean = false;
   nomeCittà!: string;
   latitude!: number;
@@ -32,6 +41,9 @@ export class MapComponent implements OnInit {
   resp2!: any;
   dateToString!: string;
   date: Date = new Date();
+  currentDay!: string;
+  currentNdate!: number
+  currentHour!: string;
   Day!: string;
   Month!: string;
   fullMonth!: string;
@@ -186,7 +198,6 @@ export class MapComponent implements OnInit {
         }else{
           return
         }
-
     });
   }
 
@@ -237,6 +248,18 @@ export class MapComponent implements OnInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
     tiles.addTo(this.map);
+  }
+
+  public buttaFuori(): void{
+    this.loginDay = localStorage.getItem('day')?.toString();
+    this.loginToNumberDate = localStorage.getItem('date')?.toString();
+    this.loginDate = Math.round(+this.loginToNumberDate).toString();
+    this.currentDay = this.date.getDay().toString();
+    this.currentHour = Math.round(this.date.getHours()).toString();
+    if(+this.currentDay>+this.loginDay&&this.currentDay===this.currentHour){
+      localStorage.clear();
+      window.location.reload();
+    }
   }
   
   constructor( private route: Router, public getData: MapServiceService, private action: UserLogServiceService) { }

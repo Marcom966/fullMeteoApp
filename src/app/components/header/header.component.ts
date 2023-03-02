@@ -136,8 +136,6 @@ export class HeaderComponent implements OnInit {
     this.getUser = localStorage.getItem('username');
     this.getPassword = localStorage.getItem('password');
     if(this.getUser!=='undefined'&&this.getPassword!=='undefined'){
-      console.log(this.getUser);
-      
       this.logged = true;
     }
     if(this.firstCityCheck){
