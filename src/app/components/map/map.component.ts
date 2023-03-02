@@ -16,7 +16,7 @@ import { UserData } from 'src/app/interfaces/user-data';
 export class MapComponent implements OnInit {
   @Input() data!: DataInterface
   map!: any;
-  params!: string[];
+  params: string[] = [];
   dataNew!: DataInterface;
   userNew!: UserData;
   firstCityCheck: boolean = false;

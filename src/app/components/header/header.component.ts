@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('username', this.realUser);
     localStorage.setItem('password', this.realPassword);
     localStorage.setItem('date', this.realDate);
-    this.router.navigate(['home']);
+    window.location.reload();
   }
   ngOnChanges():void{
     if(this.firstCityCheck){

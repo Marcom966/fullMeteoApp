@@ -19,15 +19,14 @@ export class FooterComponent implements OnInit {
   realUser: string = 'undefined';
   realPassword: string = 'undefined';
   realDate: string = 'undefined';
-
+  date!: string|null;
 
   constructor(private router: Router, private getData: UserLogServiceService) { }
   public footer(){
     this.storageUser = localStorage.getItem('username');
-    this.passwordUser = localStorage.getItem('passord');
-    if(this.storageUser!=='undefined'&&this.passwordUser!=='undefined'){
-      this.isAuth = true;
-    }
+    this.passwordUser = localStorage.getItem('password');
+    this.date = localStorage.getItem('date');
+
     this.auth = this.getData.getDataUser();
     if(this.auth.length!==0){
       this.isauth = true;
@@ -35,8 +34,12 @@ export class FooterComponent implements OnInit {
     if(this.isauth){
       this.auth.forEach((auth:any)=>{
         this.user = auth['userName'];
-        this.accesso = auth['date'];
+        this.accesso =auth['date'];
       })
+      if(this.user===undefined&&this.accesso===undefined){
+        this.user = this.storageUser;
+        this.accesso = this.date;
+      }
     }else{
       return
     }
@@ -54,9 +57,7 @@ export class FooterComponent implements OnInit {
     localStorage.setItem('username', this.realUser);
     localStorage.setItem('password', this.realPassword);
     localStorage.setItem('date', this.realDate);
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['home']);
+    window.location.reload();
   }
   ngOnChanges(): void{
     this.footer();
@@ -65,7 +66,7 @@ export class FooterComponent implements OnInit {
     this.storageUser = localStorage.getItem('username');
     this.passwordUser = localStorage.getItem('passord');
     if(this.storageUser!=='undefined'&&this.passwordUser!=='undefined'){
-      this.isAuth = true;
+      this.isauth = true;
     }
     this.footer()
   }
