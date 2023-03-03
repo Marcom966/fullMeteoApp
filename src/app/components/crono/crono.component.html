@@ -1,15 +1,25 @@
-<div id="container" class="container">
+<div class="container">
     <h1 class="userLog"> Cronologia {{username}}</h1>
     <h1 class="userLog"> Orario Login: {{loginDate}}</h1>
-        <tr class="cronologiaUser" *ngFor="let action of pageActions">
-            <th class="titoloTabella">Orario:</th>
-            <th class="titoloTabella">Azione:<th>
-            <th class="titoloTabella">Città cercata:<th>
-            <th class="titoloTabella">Parametri Cercanti:</th>
-            <tbody class="results">{{action.date}}</tbody>
-            <tbody class="results">{{action.currentPageData}}</tbody>
-            <tbody class="results">{{action.nomeCittaArray}}</tbody>    
-            <tbody class="results">{{action.selezionati}}</tbody>           
-        </tr>
+    <div class="notPopolated">{{popolated ? "Non hai ancora eseguito alcuna azione" : "Azioni: "}}</div>
+    <table id="table" class="table table-striped">
+        <thead>
+            <tr class="cronologiaUser">
+                <th scope="col">Orario:</th>
+                <th scope="col">Azione:<th>
+                <th scope="col">Città cercata:<th>
+                <th scope="col">Parametri Cercanti:</th>
+            </tr>
+        </thead>
+        <tbody>        
+            <tr scope="row" *ngFor="let action of pageActions">
+                <!--<th scope="row"></th>-->
+                    <td class="results">{{action.date}}</td>
+                    <td class="results">{{action.currentPageData}}</td>
+                    <td class="results">{{action.nomeCittaArray}}</td>    
+                    <td class="results">{{action.selezionati}}</td>
+            </tr>
+        </tbody>           
+    </table>
     <button type="button" (click)="getBack()" id="button" class="buttonBack">Home</button>
 </div>

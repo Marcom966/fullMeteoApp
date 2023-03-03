@@ -256,7 +256,7 @@ export class MapComponent implements OnInit {
     this.loginDate = Math.round(+this.loginToNumberDate).toString();
     this.currentDay = this.date.getDay().toString();
     this.currentHour = Math.round(this.date.getHours()).toString();
-    if(+this.currentDay>+this.loginDay&&this.currentDay===this.currentHour){
+    if(+this.currentDay>+this.loginDay&&((this.loginDate===this.currentHour)||(+this.currentHour>+this.loginDate))){
       localStorage.clear();
       window.location.reload();
     }

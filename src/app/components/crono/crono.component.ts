@@ -17,7 +17,7 @@ export class CronoComponent implements OnInit {
   passwordUser!: string|null;
   user: any[] = [];
   log: any[] = [];
-  loginDate!: string;
+  loginDate!: string|null;
   nomeCitta!: string;
   orario!: string;
   azione!: string;
@@ -26,6 +26,7 @@ export class CronoComponent implements OnInit {
   params: any[] = [];
   paramsName!: string;
   isAuth: boolean = false;
+  popolated: boolean = false;
 
   constructor(private action: UserLogServiceService, private route: Router) { }
   public getData(){
@@ -33,6 +34,15 @@ export class CronoComponent implements OnInit {
       this.username = user.userName;
       this.loginDate = user.date;      
     })
+    if(this.username===undefined&&this.loginDate===undefined){
+      this.username = localStorage.getItem('username')
+      this.loginDate = localStorage.getItem('date');
+    }if(this.pageActions.length===0){
+      this.popolated = true;
+    }else{
+      this.popolated = false;
+    }
+    
   }
 
   public getBack(){

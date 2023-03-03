@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   currentPage = '';
   timeSpentOnPages = [];
   componentName!: string;
+  componentName2!: string;
   realUser!: string;
   realPassword!: string;
   realDate!: string;
@@ -92,6 +93,7 @@ export class HeaderComponent implements OnInit {
     this.temperaturaAlsuolo = form.value.soil_temperature;
     this.weatherCode = form.value.weathercode;
     this.componentName = 'header-component';
+    this.componentName2 = 'freeCity';
     if(this.params.length>0){
       this.params.splice(0, this.params.length);
     }
