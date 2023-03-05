@@ -16,11 +16,10 @@ import { UserData } from 'src/app/interfaces/user-data';
 export class MapComponent implements OnInit {
   @Input() data!: DataInterface
   map!: any;
-  params: string[] = [];
   dataNew!: DataInterface;
   userNew!: UserData;
   localDate!: any;
-  loginDate!: any;
+  loginDate!: any|null;
   loginToNumberDate!:any;
   loginToNumberDateToString: string = "";
   loginDay!: any;
@@ -41,6 +40,7 @@ export class MapComponent implements OnInit {
   resp2!: any;
   dateToString!: string;
   date: Date = new Date();
+  date2!: Date;
   currentDay!: string;
   currentNdate!: number
   currentHour!: string;
@@ -67,6 +67,7 @@ export class MapComponent implements OnInit {
   freemarker: boolean = false;
   markerExists: boolean = false; 
   marker!: any;
+  hoursToMilliseconds!: number;
 
 
 
@@ -75,6 +76,8 @@ export class MapComponent implements OnInit {
     if(this.data===undefined){
       return
     }
+    let toMilliseconds = (hrs: any,min: any,sec: any) => (hrs*60*60+min*60+sec)*1000;
+    this.hoursToMilliseconds = toMilliseconds(24, 0, 0);
     let hourly;
     let time!: string[];
     let keys: string[] = [];
@@ -203,6 +206,8 @@ export class MapComponent implements OnInit {
 
 
   public openMapNew(): void {
+    let params: string[] = [];
+    this.date2 = new Date();
     this.map = L.map('map', {
       center:[41.902320136026475, 12.498225402554683],
       zoom: 3
@@ -220,26 +225,31 @@ export class MapComponent implements OnInit {
       window.alert('free marker mode attivato')
       this.markerExists = true;
       this.Decide();
-      if(this.params.length>0){
-        this.params.splice(0, this.params.length);
+      if(params.length>0){
+        params.splice(0, params.length);
       }
+      
       if(this.temperaturaAlsuolo){
         let nameParameter = 'soil_temperature'
-        this.params.push(nameParameter)
+        params.push(nameParameter)
       }
+      
       if(this.temperatura){
         let nameParameter = 'temperatura';
-        this.params.push(nameParameter);
+        params.push(nameParameter);
       }
+      
       if(this.vento){
         let nameParameter = 'wind'
-        this.params.push(nameParameter);
+        params.push(nameParameter);
       }
+      
       if(this.weathercode){
         let nameParameter = 'weatherCode';
-        this.params.push(nameParameter);
+        params.push(nameParameter);
       }
-      this.dataNew = new DataInterface('map-freeMarker-component', this.date.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, this.params, 'map-component');
+      
+      this.dataNew = new DataInterface('map-freeMarker-component', this.date2.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, params, 'map-component');
       this.action.sendDataActions(this.dataNew);
     }))
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -251,12 +261,10 @@ export class MapComponent implements OnInit {
   }
 
   public buttaFuori(): void{
-    this.loginDay = localStorage.getItem('day')?.toString();
-    this.loginToNumberDate = localStorage.getItem('date')?.toString();
-    this.loginDate = Math.round(+this.loginToNumberDate).toString();
-    this.currentDay = this.date.getDay().toString();
-    this.currentHour = Math.round(this.date.getHours()).toString();
-    if(+this.currentDay>+this.loginDay&&((this.loginDate===this.currentHour)||(+this.currentHour>+this.loginDate))){
+    this.currentNdate = this.date2.getTime();
+    this.loginDate = localStorage.getItem('dateSince');
+    let minus = this.currentNdate - this.hoursToMilliseconds;
+    if(this.loginDate>=minus){
       localStorage.clear();
       window.location.reload();
     }

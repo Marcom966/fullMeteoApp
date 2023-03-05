@@ -3,6 +3,7 @@ export class UserData {
         public id: string,
         public date: string,
         public currentPage: string,
-        public userName: string|undefined
+        public userName: string|undefined,
+        public dateSinceString: number
     ){}
 }

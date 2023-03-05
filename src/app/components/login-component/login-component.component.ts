@@ -16,6 +16,8 @@ export class LoginComponentComponent implements OnInit {
   usernameTocatch!: string;
   passwordToCatch!: string;
   date: Date = new Date();
+  dateSince!: Date;
+  dateSinceInt!: number;
   day!: string;
   userLog!: UserData;
   requestSub = new Subscription();
@@ -46,8 +48,11 @@ export class LoginComponentComponent implements OnInit {
           localStorage.setItem('password', this.passWord2);
           localStorage.setItem('date', this.date2);
           localStorage.setItem('day', this.day);
+          this.dateSince = new Date();
+          this.dateSinceInt = this.dateSince.getTime();
+          localStorage.setItem('dateSince', this.dateSinceInt.toString());
           this.componentName = 'login-component';
-          this.userLog = new UserData('UserData', this.date.toLocaleTimeString(), 'login-component', this.username2);
+          this.userLog = new UserData('UserData', this.date.toLocaleTimeString(), 'login-component', this.username2, this.dateSinceInt);
           this.userLogger.sendDataUser(this.userLog);
         }else{
           this.formError();

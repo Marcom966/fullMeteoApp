@@ -4,20 +4,19 @@
     <div class="notPopolated">{{popolated ? "Non hai ancora eseguito alcuna azione" : "Azioni: "}}</div>
     <table id="table" class="table table-striped">
         <thead>
-            <tr class="cronologiaUser">
-                <th scope="col">Orario:</th>
-                <th scope="col">Azione:<th>
-                <th scope="col">Città cercata:<th>
-                <th scope="col">Parametri Cercanti:</th>
+            <tr>
+                <th scope="col-sm">Orario:</th>
+                <th scope="col-sm">Azione:</th>
+                <th scope="col-sm">Città cercata:</th>
+                <th scope="col-sm">Parametri cercati:</th>
             </tr>
         </thead>
         <tbody>        
-            <tr scope="row" *ngFor="let action of pageActions">
-                <!--<th scope="row"></th>-->
-                    <td class="results">{{action.date}}</td>
-                    <td class="results">{{action.currentPageData}}</td>
-                    <td class="results">{{action.nomeCittaArray}}</td>    
-                    <td class="results">{{action.selezionati}}</td>
+            <tr scope="row no-gutters" *ngFor="let action of pageActions">
+                <td class="results">{{action.date}}</td>
+                <td class="results">{{action.currentPageData}}</td>
+                <td class="results">{{action.nomeCittaArray}}</td>    
+                <td class="results">{{action.selezionati}}</td>
             </tr>
         </tbody>           
     </table>

@@ -16,7 +16,10 @@ export class CronoComponent implements OnInit {
   storageUser!: string|null;
   passwordUser!: string|null;
   user: any[] = [];
-  log: any[] = [];
+  soilTemperature!: boolean;
+  wind!: boolean;
+  temperature!: boolean;
+  weatherCode!: boolean;
   loginDate!: string|null;
   nomeCitta!: string;
   orario!: string;
@@ -32,7 +35,8 @@ export class CronoComponent implements OnInit {
   public getData(){
     this.userNameActions.forEach(user=>{
       this.username = user.userName;
-      this.loginDate = user.date;      
+      this.loginDate = user.date;    
+      
     })
     if(this.username===undefined&&this.loginDate===undefined){
       this.username = localStorage.getItem('username')

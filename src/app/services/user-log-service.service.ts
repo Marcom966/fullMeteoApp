@@ -12,6 +12,7 @@ export class UserLogServiceService {
 
   public sendDataUser(user: UserData){
    this.userArr.push(user);
+   
   }
 
   public sendDataActions(data: DataInterface){
@@ -20,6 +21,7 @@ export class UserLogServiceService {
 
   public getDataUser(){
     return this.userArr;
+    
   }
 
   public getDataActions(){

@@ -29,8 +29,12 @@ export class HeaderComponent implements OnInit {
   temperaturaAlsuolo!: boolean;
   weatherCode!: boolean;
   data!: DataInterface;
+  datafreeArray!: DataInterface;
   userData!: UserData;
-  date: Date = new Date() ;
+  date!: Date;
+  dateNew!: Date;
+  getDate!: number;
+  hoursToMilliseconds!: number;
   lastIn: any= '';
   currentPage = '';
   timeSpentOnPages = [];
@@ -39,7 +43,6 @@ export class HeaderComponent implements OnInit {
   realUser!: string;
   realPassword!: string;
   realDate!: string;
-  params: string[] = [];
   getUser!: string|null;
   getPassword!: string|null;
   logged: boolean = false;
@@ -71,6 +74,11 @@ export class HeaderComponent implements OnInit {
   ]
 
   public getCity(form: NgForm){
+    
+    let params: string[] = [];
+    this.date = new Date();
+    this.dateNew = new Date();
+    this.getDate = this.dateNew.getTime();
     this.firstCityCheck = form.value.cityCheck;
     if(this.firstCityCheck){
       this.cityFirstChecked = true;
@@ -94,27 +102,43 @@ export class HeaderComponent implements OnInit {
     this.weatherCode = form.value.weathercode;
     this.componentName = 'header-component';
     this.componentName2 = 'freeCity';
-    if(this.params.length>0){
-      this.params.splice(0, this.params.length);
+    if(params.length>0){
+      params.splice(0, params.length);
     }
     if(this.temperaturaAlsuolo){
       let nameParameter = 'soil_temperature'
-      this.params.push(nameParameter)
+      params.push(nameParameter)
     }
+
     if(this.temperatura){
       let nameParameter = 'temperatura';
-      this.params.push(nameParameter);
+      params.push(nameParameter);
     }
+
     if(this.vento){
       let nameParameter = 'wind'
-      this.params.push(nameParameter);
+      params.push(nameParameter);
     }
+
     if(this.weatherCode){
       let nameParameter = 'weatherCode';
-      this.params.push(nameParameter);
+      params.push(nameParameter);
     }
-    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, this.params, this.componentName);
-    this.user.sendDataActions(this.data);
+    console.log(params);
+    
+    
+
+    this.datafreeArray = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName2)
+    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName);
+    
+    
+    if(this.checkBoxCityArray){
+      this.user.sendDataActions(this.data);
+      console.log(this.data);
+      
+    }else if (this.firstCityCheck){
+      this.user.sendDataActions(this.datafreeArray);
+    }
   }
 
   public logIn(){
