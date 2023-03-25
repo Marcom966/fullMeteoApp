@@ -1,7 +1,25 @@
+.container{
+    padding:0;
+    margin:0;
+}
+
+.nav{
+    background-color: transparent;
+    color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: 4px solid blue !important;
+    width: 100%;
+    height: 100%;
+    margin-top: -155px;
+    margin-bottom: 25px;
+    z-index: 2;
+    position: relative;
+}
 .results{
     margin-left: 20px;
-    border: 2px solid blue;
-    width: 100%;
+    border: 1px solid blue;
+    width: 20%;
+    height: 40%;
 }
 
 .buttonBack{
@@ -10,6 +28,7 @@
     width: 150px;
     height: 30px;
     text-align: center !important;
+    margin-top: 16px;
     margin-left: 20px;
     margin-bottom: 20px;
     border: 1px solid whitesmoke;
@@ -19,4 +38,275 @@
 
 .buttonBack:hover {
     box-shadow: 1px 1px 1px blue;
+}
+
+.buttonBackTop{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 750px;
+    margin-right: 10px;
+    margin-top: 0px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+}
+
+.buttonBackTop:hover{
+    box-shadow: 1px 1px blue;
+}
+
+.navImage{
+    background-image: url('/assets/weather-images.jpg');
+    width: 142%;
+    height: 242px;
+    border: 2px solid blue;
+    filter: blur(10px);
+    z-index: 1;
+    position: relative;
+}
+
+
+.altenImg{
+    height: 100px;
+    width: 60px;
+    background-color: #ADD8E6;
+}
+
+.image-container{
+    margin-left: 104px;
+    margin-bottom: 27px;
+}
+
+.name{
+    margin: auto;
+    width: 502px;
+    letter-spacing: 22px;
+    margin-left: 544px;
+}
+
+.h1Form{
+    display: flex;
+    float: left;
+    margin-top: -126px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 225, 255);
+    text-shadow: 2px 2px 2px rgb(245, 245, 245);
+}
+
+.exitBuuton{
+    background-color: transparent;
+    height: 10px;
+    margin-top: -242px;
+    margin-left: -586px;
+}
+
+.button{
+    background-image: url("/assets/buttonBackground.png");
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-top: -26px;
+    margin-bottom: 40px;
+    margin-left: 907px;
+    border: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+}
+.button:hover{
+    box-shadow: 0 2px 1px -1px blue;
+}
+
+.logButtonCrono{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1614px;
+    margin-right: 10px;
+    margin-top: 125px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+}
+.logButtonCrono:hover{
+    box-shadow: 0 2px 1px -1px blue;
+}
+
+.containerTable{
+    width: 200px;
+    height: 1880px;
+}
+
+.cronoButton{
+    margin-top: -118px;
+}
+
+.userLogTop{
+    text-align: center;
+    display: flex;
+    float: left;
+    margin-top: -81px;
+    margin-left: 773px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.userLogBottom{
+    text-align: center;
+    display: flex;
+    float: left;
+    margin-top: -29px;
+    margin-left: 743px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.notPopolated{
+    text-align: center;
+    margin-left: 558px;
+    color: red;
+    font-weight: 600;
+    font-size: xx-large;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: -14px;
+    margin-bottom: 14px;
+}
+
+.Popolated{
+    text-align: center;
+    margin-left: 558px;
+    color: black;
+    font-weight: 600;
+    font-size: xx-large;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 27px;
+
+}
+
+.tableHead{
+    width: 100%;
+}
+
+.orario{
+    width: 20px;
+    height: 20px;
+}
+
+.containerTable{
+    width: 1478px;
+    margin-left: 164px;
+}
+
+.table-curved{
+    border-radius: 2px !important;
+}
+
+.cardNew{
+    border: 1px solid blue;
+    border-radius: 20px;
+    margin-left: 20px;
+    width: 1815px;
+    text-align: center;
+}
+
+.rowCrono{
+    height: 20px !important;
+    border: 2px dotted burlywood !important;
+}
+
+@media (max-width: 847px){
+    .navImage{
+    background-image: url(/assets/weather-images.jpg);
+    width: 149%;
+    height: 242px;
+    border: 2px solid blue;
+    filter: blur(10px);
+    z-index: 1;
+    position: relative;
+    }
+    .h1Form{
+    display: flex;
+    float: left;
+    margin-top: -175px;
+    margin-left: -291px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 225, 255);
+    text-shadow: 2px 2px 2px rgb(245, 245, 245);
+    }
+    .image-container{
+    margin-left: 80px;
+    margin-bottom: 27px
+    }
+    .buttonBackTop{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 303px;
+    margin-right: 10px;
+    margin-top: -4px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .logButtonCrono{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1134px;
+    margin-right: 55px;
+    margin-top: 125px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .userLogTop{
+    text-align: center;
+    display: flex;
+    float: left;
+    margin-top: -81px;
+    margin-left: 336px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .userLogBottom{
+    text-align: center;
+    display: flex;
+    float: left;
+    margin-top: -29px;
+    margin-left: 312px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .notPopolated{
+    text-align: center;
+    margin-left: 249px;
+    color: red;
+    font-weight: 600;
+    font-size: xx-large;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: -14px;
+    margin-bottom: 14px;
+    }
+    .cardNew{
+    border: 1px solid blue;
+    border-radius: 20px;
+    margin-left: 20px;
+    width: 1020px;
+    text-align: center;
+    }
 }

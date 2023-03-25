@@ -41,10 +41,13 @@ export class MapServiceService {
         this.newLink = this.firstLink + this.toConcatWeatherCode + this.toConcatWind;
       }
       if(soilTemperature&&Temperature){
-        this.newLink = this.firstLink + this.toConcatTemp + this.toConcatWeatherCode;
+        this.newLink = this.firstLink + this.toConcatTemp + this.toConcatSoil;
       }
       if(soilTemperature&&Wind){
         this.newLink = this.firstLink + this.toConcatSoil + this.toConcatWind;
+      }
+      if(Temperature&&Wind){
+        this.newLink = this.firstLink + this.toConcatTemp + this.toConcatWind;
       }
       if(weatherCode&&Temperature&&Wind){
         this.newLink = this.firstLink + this.toConcatTemp + this.toConcatWeatherCode  + this.toConcatWind;

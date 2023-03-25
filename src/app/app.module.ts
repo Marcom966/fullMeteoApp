@@ -10,7 +10,6 @@ import { CronoComponent } from './components/crono/crono.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     MapComponent,
     CronoComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,

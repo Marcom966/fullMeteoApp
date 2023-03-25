@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
   userNew!: UserData;
   localDate!: any;
   loginDate!: any|null;
+  date2: Date = new Date;
   loginToNumberDate!:any;
   loginToNumberDateToString: string = "";
   loginDay!: any;
@@ -40,7 +41,6 @@ export class MapComponent implements OnInit {
   resp2!: any;
   dateToString!: string;
   date: Date = new Date();
-  date2!: Date;
   currentDay!: string;
   currentNdate!: number
   currentHour!: string;
@@ -58,7 +58,7 @@ export class MapComponent implements OnInit {
   toSearch!: string;
   console!: number;
   currentWeather!: number;
-  currentSoil!: number;
+  currentSoil: number = 0;
   weatherName!: string;
   currentWind!: number;
   currentTemperature!: number;
@@ -90,16 +90,13 @@ export class MapComponent implements OnInit {
     this.firstCityCheck = this.data.cityCheck1;
     this.cityCheck = this.data.cityCheckArray;
     if(this.firstCityCheck){
-      
       this.nomeCittà = this.data.nomeCittà;
       this.latitude = this.data.latitudine;
       this.longitude = this.data.longitudine;
     }else if(this.cityCheck){
-      
       this.nomeCittà = this.data.nomeCittaArray;
       this.latitude = this.data.latitudeArray;
       this.longitude = this.data.longitudeArray;
-      
     }else if (this.freemarker&&!this.firstCityCheck&&!this.cityCheck){
       this.nomeCittà = "Posizione Marker";
       this.latitude = this.latMarker;
@@ -160,6 +157,7 @@ export class MapComponent implements OnInit {
           }
         let weather = keys[keyPosition].valueOf();
         this.weatherName = weather;
+        
         }
         if(this.temperaturaAlsuolo){
           this.currentSoil = soil_temperature[this.console].valueOf();
@@ -209,12 +207,12 @@ export class MapComponent implements OnInit {
 
 
   public openMapNew(): void {
-    let params: string[] = [];
-    this.date2 = new Date();
     this.map = L.map('map', {
       center:[41.902320136026475, 12.498225402554683],
       zoom: 3
     }).on('click', (e=>{ 
+      let params: string[] = [];
+      let dateNewNew = new Date();
       if(this.markerExists){
         this.marker.removeFrom(this.map);
       }    
@@ -223,7 +221,7 @@ export class MapComponent implements OnInit {
       this.lenMarker = e.latlng.lng;
       this.freemarker = true;
       if(!this.weathercode&&!this.temperatura&&!this.vento&&!this.temperaturaAlsuolo){
-        window.alert('scegli quali parametri vuoi vedere, poi clicca invia');
+        window.alert('scegli quali parametri vuoi vedere, poi clicca il 3° pulsante rotondo e dopo clicca invia');
       }
       this.markerExists = true;
       this.Decide();
@@ -232,26 +230,29 @@ export class MapComponent implements OnInit {
       }
       
       if(this.temperaturaAlsuolo){
-        let nameParameter = 'soil_temperature'
+        let nameParameter = 'Temperatura al suolo'
         params.push(nameParameter)
       }
       
       if(this.temperatura){
-        let nameParameter = 'temperatura';
+        let nameParameter = 'Temperatura';
         params.push(nameParameter);
       }
       
       if(this.vento){
-        let nameParameter = 'wind'
+        let nameParameter = 'Vento'
         params.push(nameParameter);
       }
       
       if(this.weathercode){
-        let nameParameter = 'weatherCode';
+        let nameParameter = 'Tempo';
         params.push(nameParameter);
       }
       
-      this.dataNew = new DataInterface('map-freeMarker-component', this.date2.toLocaleTimeString(), false, 'freeMarker', this.latMarker, this.lenMarker, false, 'freeMarker', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, params, 'map-component');
+      
+      
+      this.dataNew = new DataInterface('map-freeMarker-component', dateNewNew.toLocaleTimeString(), false, 'Marker su mappa', this.latMarker, this.lenMarker, false, 'Marker su mappa', this.latMarker, this.lenMarker, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weathercode, params, 'Click su mappa');
+      
       this.action.sendDataActions(this.dataNew);
     }))
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -287,6 +288,7 @@ export class MapComponent implements OnInit {
       this.requestSub.unsubscribe();
     }
   ngOnInit(): void {
+    this.buttaFuori();
   }
 
 }

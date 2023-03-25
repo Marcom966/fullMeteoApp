@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserData } from 'src/app/interfaces/user-data';
 import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
@@ -9,10 +10,12 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 })
 export class FooterComponent implements OnInit {
   auth!: any;
+  actions!: any;
   isauth: boolean = false;
   isAuth: boolean = false;
   storageUser!: string|null;
-  passwordUser!: string|null
+  passwordUser!: string|null;
+  userLogFt!: UserData;
   user!: any;
   accesso!: any;
   ultimoAccesso!: any;
@@ -26,15 +29,18 @@ export class FooterComponent implements OnInit {
     this.storageUser = localStorage.getItem('username');
     this.passwordUser = localStorage.getItem('password');
     this.date = localStorage.getItem('date');
-
     this.auth = this.getData.getDataUser();
+    if(this.storageUser===null&&this.passwordUser==null){
+      this.auth = [];
+      this.actions = [];
+    }
     if(this.auth.length!==0){
       this.isauth = true;
     }
     if(this.isauth){
       this.auth.forEach((auth:any)=>{
         this.user = auth['userName'];
-        this.accesso =auth['date'];
+        this.accesso = auth['date'];
       })
       if(this.user===undefined&&this.accesso===undefined){
         this.user = this.storageUser;
@@ -65,10 +71,12 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.storageUser = localStorage.getItem('username');
     this.passwordUser = localStorage.getItem('password');
-    if(this.storageUser!=='undefined'&&this.passwordUser!=='undefined'){
+    if((this.storageUser!=='undefined'&&this.passwordUser!=='undefined')&&(this.storageUser!==null&&this.passwordUser!==null)){
       this.isauth = true;
+    }else{
+      this.isauth = false;
     }
-    this.footer()
+    this.footer();
   }
 
 }

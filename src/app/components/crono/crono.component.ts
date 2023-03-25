@@ -29,7 +29,10 @@ export class CronoComponent implements OnInit {
   params: any[] = [];
   paramsName!: string;
   isAuth: boolean = false;
-  popolated: boolean = false;
+  notpopolated: boolean = false;
+  realUser: string = "";
+  realPassword: string = "";
+  realDate: string = "";
 
   constructor(private action: UserLogServiceService, private route: Router) { }
   public getData(){
@@ -42,21 +45,25 @@ export class CronoComponent implements OnInit {
       this.username = localStorage.getItem('username')
       this.loginDate = localStorage.getItem('date');
     }if(this.pageActions.length===0){
-      this.popolated = true;
+      this.notpopolated = true;
     }else{
-      this.popolated = false;
+      this.notpopolated = false;
     }
-    
   }
 
   public getBack(){
     this.route.navigate(['home'])
   }
 
+  public exitCrono(){
+    localStorage.clear();
+    this.route.navigate(['home']);
+    this.action.clearActions();
+  }
+
   ngOnInit(): void {
     this.userNameActions = this.action.getDataUser();
     this.pageActions = this.action.getDataActions();
-    
     this.getData();
   }
 }

@@ -1,51 +1,69 @@
 <div class="containerAlten" id="top-page">
+    <div class="name-logo-welcome"></div>
     <nav class="navbar" id="navbar">
         <div class="image-container" id="image-container">
-            <img class="altenImg" src="assets/ALTEN.jpg">
+            <img class="altenImg" title="altenImage" src="assets/ALTEN.jpg">
         </div>
-        <div class="row" id="row">
-            <form #cityForm="ngForm" (ngSubmit)="getCity(cityForm)" class="City" id="form">
-                <div class="row" id="rowForm">
-                    <div class="rowRow">
-                        <h1 class="h1Form">ALTEN METEO</h1>
-                        <div [ngClass]="cityFirstChecked ? 'firstInput' : 'firstInput2'">{{cityFirstChecked ? 'Inserisci una città': ''}}
-                            <input type="radio" class="radioButton" ngModel name="cityCheck" value="cityCheck" id="cityCheck" (click)="cityFirstChecked ? notChecked() : oncheck()">
-                                <div class="ifCity" *ngIf="cityFirstChecked===true">
-                                    <input type="text" ngModel name="nomeCittà" class="collapseInput" placeholder="scrivi nome città" id="collapseInput"/>
-                                    <input type="text" ngModel name="latitude"  class="collapseInput" placeholder="aggiungi latitudine" id="collapseInput"/>
-                                    <input type="text" ngModel name="longitude" class="collapseInput" placeholder="aggiungi longitudine" id="collapseInput"/>
-                                </div>
-                        </div>
-                        <div [ngClass]="checkBoxCityArray ? 'checkCity': 'checkCity2'">
-                            <input type="radio" ngModel name="cityCheck" value="checkBoxCity" class="checkBoxCity" id="checkboxCity" (click)="checkBoxCityArray ? cityArrayNotChecked() : cityArrayCheck()">
-                            <p *ngIf="checkBoxCityArray===true" class="pCheckCity">{{checkBoxCityArray ? 'Scegli una città dalla lista' : ''}}
-                                <select name="cities" class="selectCity inline" id="citiesSeach" ngModel name="cityToChoose" label="scegli una città" aria-label="cittaArray" *ngIf="checkBoxCityArray===true">
+        <div class="name">
+            <h1 class="h1Form">ALTEN METEO</h1>
+        </div>
+        <div class="exitBuuton">
+            <button type="button" id="loggati" [ngClass]="logged ? 'logButton' : 'logButtonNotRegistered'" (click)="logged ? exit() : logIn()">{{logged ? "Esci" : "Accedi"}}</button>
+        </div>
+        <div class="cronoButton">
+            <button id="cronoButtonButton" class="headCrono" placeholder="cronobutton"  (click)="goToChrono()" *ngIf="logged===true">{{logged ? "Cronologia" : ""}}</button>
+        </div>
+        <div class="welcome">
+            <h2 class="h2Form" *ngIf="logged===true">Bentornato/a {{getUser}}!</h2>
+        </div>
+    </nav>
+    <div class="controlRoomContainer">
+        <form class="City" id="form" #cityForm="ngForm" (ngSubmit)="getCity(cityForm)">
+            <div class="row rowFirst" id="rowClass">
+                <div class="row rowSecond" id="rowSecond">
+                    <div [ngClass]="cityFirstChecked ? 'firstInput' : 'firstInputContracted'">{{cityFirstChecked ? 'Inserisci una città': ''}}
+                        <input type="radio" class="radioButton" name="cityCheck" value="cityCheck" id="cityCheck" placeholder="radio" label="cityCheck" ngModel (click)="cityFirstChecked ? notChecked() : oncheck()">
+                            <div class="ifCity" *ngIf="cityFirstChecked===true">
+                                <input type="text" name="nomeCittà" class="collapseInput" placeholder="scrivi nome città" id="collapseInput" ngModel />
+                                <input type="text" name="latitude"  class="collapseInput" placeholder="aggiungi latitudine" id="collapseInput" ngModel />
+                                <input type="text" name="longitude" class="collapseInput" placeholder="aggiungi longitudine" id="collapseInput" ngModel />
+                            </div>
+                    </div>
+                    <br>
+                    <div [ngClass]="checkBoxCityArray ? 'checkCity': 'checkCityContracted'">
+                        <input type="radio" name="cityCheck" value="checkBoxCity" class="checkBoxCity" id="checkboxCity" placeholder="radio2" label="checkBoxCity" ngModel (click)="checkBoxCityArray ? cityArrayNotChecked() : cityArrayCheck()">
+                            <p class="pCheckCity" *ngIf="checkBoxCityArray===true">{{checkBoxCityArray ? 'Scegli una città dalla lista' : ''}}
+                                <select name="cities" class="selectCity inline" id="citiesSeach" name="cityToChoose" label="scegli una città" aria-label="cittaArray" ngModel *ngIf="checkBoxCityArray===true">
+                                    <option value="" disabled selected>Lista città</option>
                                     <option value="" class="cityOption" *ngFor="let City of cityArray" [ngValue]="City">{{City.cityName}}</option>
                                 </select>
                             </p>
-                        </div>
-                        <div [ngClass]="freeMarkerCheck ? 'markerInput':'markerInput2'">{{freeMarkerCheck ? ('Marker mode attivato'|uppercase):''}}
-                            <input type="radio" id="freemarker" class="radioButton" ngModel name="cityCheck" value="freeMarker">
-                        </div>
+                    </div>
+                    <br>
+                    <div [ngClass]="freeMarkerCheck ? 'markerInput' : 'markerInputExpanded'">{{freeMarkerCheck ? ('Marker mode attivato'|uppercase):''}}
+                        <input type="radio" id="freemarker" class="radioButton" name="cityCheck" value="freeMarker" placeholder="radio3" label="freeMarker" ngModel >
+                    </div>
+                    <br>
+                    <div class="scegli" *ngIf="cityFirstChecked===false&&checkBoxCityArray===false&&freeMarkerCheck===false">Scegli uno dei pulsanti rotondi oppure clicca sulla mappa</div>
+                </div>
+                <div id="rowThird" class="rowThird">
+                    <div class="form-check form-switch formCheckbox">
+                        <input type="checkbox" class="form-check-input formCheckInput" label="temperatura" placeholder="temperatura" name="temperatura" ngModel />Temperatura
+                    </div>
+                    <div class="form-check form-switch formCheckbox" *ngIf="logged===true">
+                        <input type="checkbox" class="form-check-input formCheckInput" label="vento" placeholder="vento" name="wind" ngModel *ngIf="logged===true">{{logged ? "Vento" : ''}} 
+                    </div>
+                    <div class="form-check form-switch formCheckboxSoilTemperature" *ngIf="logged===true">
+                        <input type="checkbox" class="form-check-input formCheckInput" label="temperatura al suolo" placeholder="temperatura al suolo" name="soil_temperature" ngModel *ngIf="logged===true">{{logged ? "Temperatura al suolo" : ''}}
+                    </div>
+                    <div [ngClass]="logged ? 'form-check form-switch formCheckboxMeteo':'form-check form-switch formCheckboxMeteoContracted'">
+                        <input type="checkbox" class="form-check-input formCheckInput" label="weathercode" placeholder="weathercode" name="weathercode" ngModel />Meteo
                     </div>
                 </div>
-                <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" ngModel name="temperatura"/>Temperatura
-                </div>
-                <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" ngModel *ngIf="getUser!=='undefined'&&getPassword!=='undefined'" name="wind">{{logged ? "Vento" : ""}} 
-                </div>
-                <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" ngModel *ngIf="getUser!=='undefined'&&getPassword!=='undefined'" name="soil_temperature">{{logged ? "Temperatura al suolo" : ""}}
-                </div>
-                <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" ngModel  name="weathercode"/>Meteo
-                </div>
-                    <button type="submit" id="onSubmit" class="button">Invia</button>
-            </form>
-        </div>
-        <button type="button" id="loggati" class="logButton" (click)="logged ? exit() : logIn()">{{logged ? "Esci" : "Accedi"}}</button>
-    </nav>
+                <button type="submit" id="onSubmit" [ngClass]="logged ? 'buttonNew' : 'button'">Invia</button>
+            </div>
+        </form>
+    </div>
     <div class="container-image"></div>
     <div class="CityMap">
         <app-map [data]="data"></app-map>

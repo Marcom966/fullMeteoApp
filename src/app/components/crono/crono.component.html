@@ -1,24 +1,43 @@
 <div class="container">
-    <h1 class="userLog"> Cronologia {{username}}</h1>
-    <h1 class="userLog"> Orario Login: {{loginDate}}</h1>
-    <div class="notPopolated">{{popolated ? "Non hai ancora eseguito alcuna azione" : "Azioni: "}}</div>
-    <table id="table" class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col-sm">Orario:</th>
-                <th scope="col-sm">Azione:</th>
-                <th scope="col-sm">Città cercata:</th>
-                <th scope="col-sm">Parametri cercati:</th>
-            </tr>
-        </thead>
-        <tbody>        
-            <tr scope="row no-gutters" *ngFor="let action of pageActions">
-                <td class="results">{{action.date}}</td>
-                <td class="results">{{action.currentPageData}}</td>
-                <td class="results">{{action.nomeCittaArray}}</td>    
-                <td class="results">{{action.selezionati}}</td>
-            </tr>
-        </tbody>           
-    </table>
-    <button type="button" (click)="getBack()" id="button" class="buttonBack">Home</button>
+    <div class="navImage"></div>
+    <nav class="nav">
+        <div class="image-container" id="image-container">
+            <img class="altenImg" title="altenImage" src="assets/ALTEN.jpg">
+        </div>
+        <div class="name">
+            <h1 class="h1Form">ALTEN METEO</h1>
+        </div>
+        <div class="exitBuuton">
+            <button type="button" id="loggati" class="logButtonCrono" (click)="exitCrono()">Esci</button>
+        </div>
+        <div class="cronoButton">
+            <button type="button" id="buttonTop" class="buttonBackTop" (click)="getBack()">Home</button>
+        </div>
+        <div class="welcome">
+            <h1 class="userLogTop"> Cronologia {{username}}</h1>
+            <h1 class="userLogBottom"> Orario Login: {{loginDate}}</h1>
+        </div>
+    </nav>
+    <div Class='notPopolated' *ngIf="notpopolated===true">Non hai ancora eseguito alcuna azione</div>
+    <div class="card cardNew" *ngIf="notpopolated!==true">
+        <table id="table" class="table table-curved">
+            <thead>
+                <tr>
+                    <th scope="col-sm orario">Orario:</th>
+                    <th scope="col-sm azione">Tipologia:</th>
+                    <th scope="col-sm cittaCercata">Città cercata:</th>
+                    <th scope="col-sm parametricercati">Parametri cercati:</th>
+                </tr>
+            </thead>
+            <tbody>        
+                <tr scope="row no-gutters rowCrono" *ngFor="let action of pageActions">
+                    <td class="results">{{action.date}}</td>
+                    <td class="results">{{action.currentPageData}}</td>
+                    <td class="results">{{action.nomeCittaArray}}</td>    
+                    <td class="results">{{action.selezionati}}</td>
+                </tr>
+            </tbody>           
+        </table>
+    </div>
+    <button type="button" id="button" class="buttonBack" (click)="getBack()">Home</button>
 </div>

@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   nomeCittàArray!: string;
   latitudeArray!: number;
   longitudeArray!: number;
-  checkBoxCityArray!: boolean;
+  checkBoxCityArray: boolean = false;
   temperatura!: boolean;
   vento!: boolean;
   temperaturaAlsuolo!: boolean;
@@ -91,6 +91,7 @@ export class HeaderComponent implements OnInit {
       this.checkBoxCityArray = false;
       this.freeMarkerCheck = false;
       this.typeOfRadio = 'cityCheck'
+
     }if (this.firstCityCheck ==='checkBoxCity'){
       this.cityToChoose = form.value.cityToChoose.cityName;
       this.checkBoxCityArray = true;
@@ -120,28 +121,28 @@ export class HeaderComponent implements OnInit {
     this.vento = form.value.wind;
     this.temperaturaAlsuolo = form.value.soil_temperature;
     this.weatherCode = form.value.weathercode;
-    this.componentName = 'header-component';
-    this.componentName2 = 'freeCity';
+    this.componentName = 'Ricercata da pannello di controllo';
+    this.componentName2 = 'Click su mappa';
     if(params.length>0){
       params.splice(0, params.length);
     }
     if(this.temperaturaAlsuolo){
-      let nameParameter = 'soil_temperature'
+      let nameParameter = 'Temperatura al suolo'
       params.push(nameParameter)
     }
 
     if(this.temperatura){
-      let nameParameter = 'temperatura';
+      let nameParameter = 'Temperatura';
       params.push(nameParameter);
     }
 
     if(this.vento){
-      let nameParameter = 'wind'
+      let nameParameter = 'Vento'
       params.push(nameParameter);
     }
 
     if(this.weatherCode){
-      let nameParameter = 'weatherCode';
+      let nameParameter = 'Tempo';
       params.push(nameParameter);
     }
     
@@ -150,12 +151,16 @@ export class HeaderComponent implements OnInit {
     this.datafreeArray = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheckedPage, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName2)
     this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheckedPage, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName);
     
-    
-    if(this.checkBoxCityArray||this.firstCityCheckedPage){
-      this.user.sendDataActions(this.data);
-      
-    }else if (this.firstCityCheck){
-      this.user.sendDataActions(this.datafreeArray);
+    if(this.logged===true){
+      if(this.checkBoxCityArray||this.firstCityCheckedPage){
+        this.user.sendDataActions(this.data);
+      }else if (this.firstCityCheck){
+        this.user.sendDataActions(this.datafreeArray);
+      }
+    }else{
+      return
+    }if(this.nomeCitta===undefined&&this.freeMarkerCheck===false&&this.nomeCittàArray===undefined){
+      window.alert('scegli una città dalla lista, inseriscila tu manualmente oppure clicca sulla mappa');
     }
   }
 
@@ -168,6 +173,10 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('password', this.realPassword);
     localStorage.setItem('date', this.realDate);
     window.location.reload();
+  }
+
+  public goToChrono(){
+    this.router.navigate(['crono']);
   }
 
   public oncheck(){
@@ -201,8 +210,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getUser = localStorage.getItem('username');
     this.getPassword = localStorage.getItem('password');
-    if(this.getUser!=='undefined'&&this.getPassword!=='undefined'){
+    if((this.getUser!=='undefined'&&this.getPassword!=='undefined')&&(this.getUser!==null&&this.getPassword!==null)){
       this.logged = true;
+    }else{
+      this.logged = false;
     }
     if(this.firstCityCheck){
       this.cityFirstChecked = true;

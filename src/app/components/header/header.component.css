@@ -2,9 +2,16 @@
     height: 100px;
     width: 60px;
     background-color: #ADD8E6;
+    margin-top: 34px;
+    margin-bottom: -34px;
 }
 .cronoButton{
-    margin-top: 23px;
+    margin-top: -68px;
+    margin-left: -842px;
+}
+
+.headCrono:hover{
+    box-shadow: 0 2px 1px -1px blue;
 }
 
 .containerAlten{
@@ -13,28 +20,49 @@
 }
 
 .navbar{
-    background-color: #ADD8E6;
+    background-color: transparent;
     color: #000000;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    border: 1px solid blue !important;
     box-shadow: 4px solid blue !important;
+    width: 100%;
+    height: 100%;
+    margin-top: -260px;
+    z-index: 1;
+    position: relative;
 }
 
 .logButton{
-    background-image: url("/assets/buttonBackground.png");
-    border-radius: 20px;
+    background-color: transparent;
     width: 100px;
     height: 30px;
     text-align: center !important;
-    margin-left: 20px;
+    margin-left: 1056px;
     margin-right: 10px;
-    margin-bottom: 20px;
-    border: 1px solid blue;
+    margin-top: 77px;
+    border: none;
+    border-bottom: 1px solid blue;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     letter-spacing: 1.71px;
 }
 .logButton:hover{
-    box-shadow: 1px 1px 1px blue;
+    box-shadow: 0 2px 1px -1px blue;
+}
+
+.logButtonNotRegistered{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1480px;
+    margin-right: 10px;
+    margin-top: 77px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+}
+.logButtonNotRegistered:hover{
+    box-shadow: 0 2px 1px -1px blue;
 }
 
 .checkCity{
@@ -44,10 +72,12 @@
     padding-left: 0px;
     padding-right: 0px;
     height: 27px;
-    width: 304px;
+    width: 306px;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.checkCity2{
+.checkCityContracted{
     border: 1px solid blue;
     margin-top: 20px;
     border-radius: 20px;
@@ -68,36 +98,54 @@
     margin-left: 2.5px;
     margin-top: 3px;
     height: 25px;
-    width: 88px;
+    width: 90px;
 }
 .cityOption{
     border-radius: 20px;
     border: 1px solid blue;
 }
 .button{
-    background-image: url("/assets/buttonBackground.png");
-    border-radius: 20px;
+    background-color: transparent;
     width: 100px;
     height: 30px;
     text-align: center !important;
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-left: 1614px;
+    margin-right: 10px;
+    margin-top: -70px;
     border: 1px solid blue;
+    border-radius: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     letter-spacing: 1.71px;
+    color: white;
 }
 .button:hover{
-    box-shadow: 1px 1px 1px blue;
+    box-shadow: 0 1px 1px 1px blue;
 }
+.buttonNew{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1614px;
+    margin-right: 10px;
+    margin-top: -70px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    color: white;
+}
+.buttonNew:hover{
+    box-shadow: 0 1px 1px 1px blue;
+}
+
 .h1FreeMarker{
     margin-top: 20px;
 }
 
-.navbar{
-    background-color: #ADD8E6;
-    width: 100%;
-    height: 400px;
-
+.image-container{
+    margin-left: 104px;
+    margin-bottom: 27px;
 }
 .container-image{
     background: url("/assets/mateo-satellite.gif") center no-repeat;
@@ -113,10 +161,26 @@
     border: 3px solid whitesmoke;
 }
 
-.h1form{
+.h1Form{
     display: flex;
     float: left;
+    margin-top: -52px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 225, 255);
+    text-shadow: 2px 2px 2px rgb(245, 245, 245);
 }
+
+.h2Form{
+    display: flex;
+    float: left;
+    margin-top: -68px;
+    margin-left: 794px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .radioButton{
     float: left;
     margin: 6px !important;
@@ -138,18 +202,19 @@
     border-radius: 20px;
     padding-left: 0px;
     padding-right: 0px;
-    height: 125px;
-    width: 206px;
+    height: 30px;
+    width: 739px !important;
+    color: white;
 }
 
-.firstInput2{
+.firstInputContracted{
     border: 1px solid blue;
     margin-top: 20px;
     border-radius: 20px;
     padding-left: 0px;
     padding-right: 0px;
     height: 27px;
-    width: 27px;
+    width: 27px !important;
 }
 
 .markerInput{
@@ -164,7 +229,7 @@
     width: 220px;  
 }
 
-.markerInput2{
+.markerInputExpanded{
     border: 1px solid blue;
     margin-top: 20px;
     border-radius: 20px;
@@ -178,4 +243,407 @@
     margin-top: -27px !important;
     margin-left: 30px;
     border: 1px soild blue;
+}
+
+.formCheckbox{
+    float: left;
+    width: 5%;
+    margin-left: 15%;
+    color: white;
+}
+
+.formCheckBoxSoil{
+    float: left;
+    width: 15%;
+    margin-left: 15%;
+}
+
+.name-logo-welcome{
+    background-image: url('/assets/weather-images.jpg');
+    width: 100%;
+    height: 267px;
+    border: 2px solid blue;
+    filter: blur(10px);
+}
+
+.name{
+    margin: auto;
+    width: 502px;
+    letter-spacing: 22px;
+    margin-left: 544px;
+}
+
+.welcome{
+    margin-top: 64px;
+}
+
+.controlRoomContainer{
+    height: 104px;
+    width: 100%;
+    border-bottom: 2px solid blue;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    margin-top: -30px;
+}
+.rowFirst{
+    width: 100%;
+}
+
+.rowSecond{
+    margin-left: 157px;
+}
+
+.ifCity{
+    width: 646px;
+    margin-left: 149px;
+    margin-top: -25px;
+}
+
+.rowThird{
+    width: 645px;
+    margin-left: 69px;
+    margin-top: 14px;
+}
+
+.rowForth{
+    width: 64px;
+    margin-left: 868px;
+    margin-top: -24px;
+}
+
+.rowFifth{
+    width: 648px;
+    margin-left: 442px;
+    margin-top: -24px;
+}
+
+.City{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.exitBuuton{
+    background-color: transparent;
+    height: 10px;
+    margin-top: -242px;
+    margin-left: -586px;
+}
+
+.headCrono{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1614px;
+    margin-right: 10px;
+    margin-top: 0px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+}
+
+.formCheckInput{
+    border: 1px solid blue;
+}
+.scegli{
+    margin-left: 4px;
+    margin-top: 19px;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: medium;
+    border-radius: 20px;
+    border: 2px solid red;
+    width: 432px;
+    height: 28px;
+}
+::placeholder{
+    color: white;
+}
+
+.formCheckboxSoilTemperature{
+    margin-top: -26px;
+    float: left;
+    margin-left: 344px;
+    width: 416px !important;
+    color: white;
+}
+
+.formCheckboxMeteo{
+    margin-top: -26px;
+    float: left;
+    margin-left: 546px;
+    color: white;
+}
+
+.formCheckboxMeteoContracted{
+    margin-top: 0px;
+    float: left;
+    margin-left: 94px;
+    color: white;
+}
+
+@media (max-width: 847px){
+    .h1Form{
+    display: flex;
+    float: left;
+    margin-top: -111px;
+    margin-left: -337px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 225, 255);
+    text-shadow: 2px 2px 2px rgb(245, 245, 245);
+    }
+    
+    .cronoButton{
+    margin-top: -88px;
+    margin-left: -1348px;
+    }
+
+    .logButton{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1054px;
+    margin-right: 10px;
+    margin-top: 67px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .h2Form{
+    display: flex;
+    float: left;
+    margin-top: -68px;
+    margin-left: 274px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .altenImg{
+    height: 100px;
+    width: 60px;
+    background-color: #ADD8E6;
+    margin-top: 34px;
+    margin-left: -80px;
+    margin-bottom: -34px;
+    }
+
+    .controlRoomContainer{
+    height: 104px;
+    width: 150%;
+    border-bottom: 2px solid blue;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    margin-top: -30px;
+    margin-left: -139px;
+    }
+    .buttonNew{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 821px;
+    margin-right: 10px;
+    margin-top: -31px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    color: white;
+    }
+    .firstInput{
+    border: 1px solid blue;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 29px;
+    width: 737px !important;
+    color: white;
+    }
+    .name-logo-welcome{
+    background-image: url(/assets/weather-images.jpg);
+    width: 119%;
+    height: 267px;
+    border: 2px solid blue;
+    filter: blur(10px);
+    }
+    .container-image{
+    background: url(/assets/mateo-satellite.gif) center no-repeat;
+    background-size: 250%;
+    background-position: 10%;
+    height: 1068px;
+    width: 806px;
+    filter: blur(8px) !important;
+    margin-left: 0px;
+    }
+    .CityMap{
+    margin-top: -1042px;
+    margin-bottom: 38px;
+    border: 3px solid whitesmoke;
+    margin-left: 147px;
+    }
+}
+@media(max-width: 1104px){
+    .h1Form{
+    display: flex;
+    float: left;
+    margin-top: -44px;
+    margin-left: 21px;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 225, 255);
+    text-shadow: 2px 2px 2px rgb(245, 245, 245);
+    }
+        
+    .cronoButton{
+    margin-top: -55px;
+    margin-left: 203px;
+    }
+    
+    .logButton{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 867px;
+    margin-right: 6px;
+    margin-top: 102px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .h2Form{
+    display: flex;
+    float: left;
+    margin-top: -68px;
+    margin-left: 304px;
+    color: cornsilk;
+    text-shadow: 2px 2px 2px whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .altenImg{
+    height: 100px;
+    width: 60px;
+    background-color: #ADD8E6;
+    margin-top: 34px;
+    margin-bottom: -34px;
+    margin-left: -49px;
+    }
+    
+    .controlRoomContainer{
+    height: 104px;
+    width: 150%;
+    border-bottom: 2px solid blue;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    margin-top: -30px;
+    margin-left: -139px;
+    }
+    .buttonNew{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 3357px;
+    margin-right: 57px;
+    margin-top: -39px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    color: white;
+    }
+    .firstInput{
+    border: 1px solid blue;
+    margin-top: 20px;
+    border-radius: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 29px;
+    width: 737px !important;
+    color: white;
+    }
+    .name-logo-welcome{
+    background-image: url(/assets/weather-images.jpg);
+    width: 119%;
+    height: 267px;
+    border: 2px solid blue;
+    filter: blur(10px);
+    }
+    .container-image{
+    background: url(/assets/mateo-satellite.gif) center no-repeat;
+    background-size: 189%;
+    background-position: 10%;
+    height: 1080px;
+    filter: blur(8px) !important;
+    }
+    .CityMap{
+    margin-top: -1042px;
+    margin-bottom: 38px;
+    border: 3px solid whitesmoke;
+    margin-left: 147px;
+    }
+    .welcome{
+    margin-top: 64px;
+    margin-left: 863px;
+    }
+    .headCrono{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 1150px;
+    margin-right: 10px;
+    margin-top: 0px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .cronoButton{
+    margin-top: -93px;
+    margin-left: -842px;
+    }
+    .exitBuuton{
+    background-color: transparent;
+    height: 10px;
+    margin-top: -391px;
+    margin-left: -725px;
+    }
+    .logButton{
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center !important;
+    margin-left: 596px;
+    margin-right: 26px;
+    margin-top: 157px;
+    border: none;
+    border-bottom: 1px solid blue;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1.71px;
+    }
+    .name{
+    margin: auto;
+    width: 494px;
+    letter-spacing: 22px;
+    margin-left: 77px;
+    }
+    .rowSecond{
+    margin-left: 195px
+    }
+    .rowThird{
+    width: 645px;
+    margin-left: 103px;
+    margin-top: 14px;
+    }
+
 }

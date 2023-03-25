@@ -27,4 +27,8 @@ export class UserLogServiceService {
   public getDataActions(){
     return this.actionsArr;
   }
+
+  public clearActions(){
+    this.actionsArr=[];
+  }
 }

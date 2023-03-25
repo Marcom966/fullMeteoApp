@@ -1,9 +1,16 @@
+<div class="image"></div>
+<div class="image-container" id="image-container">
+    <img class="altenImg" title="altenImage" src="assets/ALTEN.jpg">
+</div>
+<div class="name">
+    <h1 class="h1Form">ALTEN METEO</h1>
+</div>
 <div class="container" id="container">
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login">
-        <p>Inserisci Nickname:</p>
-        <input type="text" ngModel class="input" name="Nickname" placeholder="Nickname">
-        <p>Inserisci Password:</p>
-        <input type="text" ngModel class="input" name="Password" placeholder="Password">
-        <button type="submit" id="onSubmit" [ngClass]="error?'errorClass':'button'">{{error?"correggi username e password, poi clicca di nuovo qui":"INVIA"}}</button>
+    <form #loginForm="ngForm" class="login" (ngSubmit)="onSubmit(loginForm)">
+        <p class="nickname">{{'Inserisci Nickname:'|uppercase}}</p>
+        <input type="text" class="collapseInput" name="Nickname" placeholder="Nickname" ngModel>
+        <p class="nickname">{{'Inserisci Password:'|uppercase}}</p>
+        <input type="text" class="collapseInput" name="Password" placeholder="Password" ngModel>
+        <button type="submit" id="onSubmit" [ngClass]="error ? 'errorClass' : 'button'">{{error ? "correggi username e password, poi clicca di nuovo qui" : "INVIA"}}</button>
     </form>
 </div>
