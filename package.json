@@ -28,6 +28,7 @@
     "ngx-matomo": "^1.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.5.0",
+    "webkit": "^0.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

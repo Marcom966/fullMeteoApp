@@ -1,8 +1,9 @@
 .map-frame{
-    border: 2px solid blue;
+    border: 2px solid whitesmoke;
     border-radius: 2px;
     border-width: 2px;
     height: 1000px;
+    box-shadow: 2px 2px 2px whitesmoke;
     }
     .map-container{
         position: relative;

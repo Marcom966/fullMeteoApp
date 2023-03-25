@@ -13,7 +13,8 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 })
 export class HeaderComponent implements OnInit {
   cityToIterate:  string[] = [];
-  firstCityCheck!: boolean;
+  firstCityCheck!: string;
+  firstCityCheckedPage: boolean = false;
   cityFirstChecked: boolean = false;
   nomeCitta!: string;
   latitudine!: number;
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
   vento!: boolean;
   temperaturaAlsuolo!: boolean;
   weatherCode!: boolean;
+  freeMarkerCheck: boolean = false;
   data!: DataInterface;
   datafreeArray!: DataInterface;
   userData!: UserData;
@@ -46,6 +48,7 @@ export class HeaderComponent implements OnInit {
   getUser!: string|null;
   getPassword!: string|null;
   logged: boolean = false;
+  typeOfRadio!: string;
   
 
   constructor(private router: Router, private user: UserLogServiceService) { }
@@ -71,6 +74,7 @@ export class HeaderComponent implements OnInit {
     new CityInterface('Reykjavik', 64.14939349875657, -21.94309826985793),
     new CityInterface('Varsavia', 52.23095779338282, 21.017340750337276),
     new CityInterface('Vienna', 48.56765959885256, 16.83312787627829),
+    new CityInterface('Licata', 37.10129456061712, 13.93711594715709)
   ]
 
   public getCity(form: NgForm){
@@ -80,14 +84,30 @@ export class HeaderComponent implements OnInit {
     this.dateNew = new Date();
     this.getDate = this.dateNew.getTime();
     this.firstCityCheck = form.value.cityCheck;
-    if(this.firstCityCheck){
-      this.cityFirstChecked = true;
+    
+    if(this.firstCityCheck==='cityCheck'){
+      this.nomeCittàArray = form.value.nomeCittà;
+      this.firstCityCheckedPage = true;
+      this.checkBoxCityArray = false;
+      this.freeMarkerCheck = false;
+      this.typeOfRadio = 'cityCheck'
+    }if (this.firstCityCheck ==='checkBoxCity'){
+      this.cityToChoose = form.value.cityToChoose.cityName;
+      this.checkBoxCityArray = true;
+      this.firstCityCheckedPage = false;
+      this.freeMarkerCheck = false;
+      this.typeOfRadio = 'cityBoxCheck';
+      
+    }if(this.firstCityCheck==='freeMarker'){
+      this.firstCityCheckedPage = false;
+      this.freeMarkerCheck = true;
+      this.checkBoxCityArray = false;
+      this.typeOfRadio = 'freeMarker'
     }
     this.nomeCitta = form.value.nomeCittà;
     this.latitudine = form.value.latitude;
     this.longitudine = form.value.longitude;
-    this.checkBoxCityArray = form.value.checkboxCity;
-    this.cityToChoose = form.value.cityToChoose.cityName;
+    
     this.cityArray.forEach(city=>{
       let citynamenew = city.cityName;
       if(citynamenew===this.cityToChoose){
@@ -124,17 +144,15 @@ export class HeaderComponent implements OnInit {
       let nameParameter = 'weatherCode';
       params.push(nameParameter);
     }
-    console.log(params);
     
     
 
-    this.datafreeArray = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName2)
-    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheck, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName);
+    this.datafreeArray = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheckedPage, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName2)
+    this.data = new DataInterface('DataInterface', this.date.toLocaleTimeString() ,this.firstCityCheckedPage, this.nomeCitta, this.latitudine, this.longitudine, this.checkBoxCityArray, this.nomeCittàArray, this.latitudeArray, this.longitudeArray, this.temperatura, this.vento, this.temperaturaAlsuolo, this.weatherCode, params, this.componentName);
     
     
-    if(this.checkBoxCityArray){
+    if(this.checkBoxCityArray||this.firstCityCheckedPage){
       this.user.sendDataActions(this.data);
-      console.log(this.data);
       
     }else if (this.firstCityCheck){
       this.user.sendDataActions(this.datafreeArray);
@@ -150,6 +168,28 @@ export class HeaderComponent implements OnInit {
     localStorage.setItem('password', this.realPassword);
     localStorage.setItem('date', this.realDate);
     window.location.reload();
+  }
+
+  public oncheck(){
+    this.cityFirstChecked = true;
+    this.checkBoxCityArray = false;
+    this.freeMarkerCheck = false;
+  }
+
+  public notChecked(){
+    this.cityFirstChecked = false;
+    this.checkBoxCityArray = false;
+    this.freeMarkerCheck = false;
+  }
+  public cityArrayCheck(){
+    this.checkBoxCityArray = true;
+    this.cityFirstChecked = false;
+    this.freeMarkerCheck = false;
+  }
+  public cityArrayNotChecked(){
+    this.checkBoxCityArray = false;
+    this.cityFirstChecked = false;
+    this.freeMarkerCheck = false;
   }
   ngOnChanges():void{
     if(this.firstCityCheck){

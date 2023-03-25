@@ -9,7 +9,7 @@ import { UserLogServiceService } from 'src/app/services/user-log-service.service
 import { UserData } from 'src/app/interfaces/user-data';
 
 @Component({
-  selector: '[app-map]',
+  selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
@@ -90,13 +90,16 @@ export class MapComponent implements OnInit {
     this.firstCityCheck = this.data.cityCheck1;
     this.cityCheck = this.data.cityCheckArray;
     if(this.firstCityCheck){
+      
       this.nomeCittà = this.data.nomeCittà;
       this.latitude = this.data.latitudine;
       this.longitude = this.data.longitudine;
     }else if(this.cityCheck){
+      
       this.nomeCittà = this.data.nomeCittaArray;
       this.latitude = this.data.latitudeArray;
       this.longitude = this.data.longitudeArray;
+      
     }else if (this.freemarker&&!this.firstCityCheck&&!this.cityCheck){
       this.nomeCittà = "Posizione Marker";
       this.latitude = this.latMarker;
@@ -222,7 +225,6 @@ export class MapComponent implements OnInit {
       if(!this.weathercode&&!this.temperatura&&!this.vento&&!this.temperaturaAlsuolo){
         window.alert('scegli quali parametri vuoi vedere, poi clicca invia');
       }
-      window.alert('free marker mode attivato')
       this.markerExists = true;
       this.Decide();
       if(params.length>0){

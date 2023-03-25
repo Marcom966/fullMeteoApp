@@ -56,6 +56,7 @@ export class CronoComponent implements OnInit {
   ngOnInit(): void {
     this.userNameActions = this.action.getDataUser();
     this.pageActions = this.action.getDataActions();
+    
     this.getData();
   }
 }

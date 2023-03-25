@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserLogServiceService } from 'src/app/services/user-log-service.service';
 
 @Component({
-  selector: '[app-footer]',
+  selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
